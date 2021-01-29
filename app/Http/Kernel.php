@@ -13,6 +13,11 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+    protected function redirectTo($request){
+        if(!$request->expectsJson()){
+            return route('login');
+        }
+    }
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
