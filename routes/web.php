@@ -21,15 +21,18 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 Route::group([
-    'prefix'=>'admin/item',
-    'namespace'=>'admin',
-    'as'=>'admin.item.',
-], function () {
-    Route::get("/","ItemController@index")->name("index");
-    Route::get("create/","ItemController@create")->name("create");
-    Route::post("add/","ItemController@add")->name("add");
-    Route::get("edit/{id}","ItemController@edit")->name("edit");
-    Route::post("update/{id}","ItemController@edit")->name("update");
+    'prefix' => 'admin/item',
+    'namespace' => 'Admin',
+    'as' => 'admin.item.',
+], function() {
+    Route::get('/', 'ItemController@index')->name('index');
+    Route::get('create/', 'ItemController@create')->name('create');
+    Route::post('add/', 'ItemController@add')->name('add');
+    Route::get('edit/{id}', 'ItemController@edit')->name('edit');
+    Route::post('update/{id}', 'ItemController@update')->name('update');
 });
+
+Route::get('cart/', 'CartController@index')->name('cart.index');
+Route::get('cart/add/{id}', 'CartController@add')->name('cart.add');
+Route::get('cart/clear', 'CartController@clear')->name('cart.clear');
